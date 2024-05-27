@@ -4,7 +4,6 @@ import AppContext from "../context/AppContext"
 
 export default function CardTop() {
   const { state, dispatch } = useContext(AppContext)
-  console.log(state)
 
   return (
     <section className="card_top">
@@ -24,9 +23,9 @@ export default function CardTop() {
         </div>
       </header>
       {/* Card Body */}
-      <div>
+      <div className="card_body">
         <button
-          className="card_top-btn"
+          className={`card_top-btn ${state.daily === true ? "active" : ""}`}
           type="button"
           onClick={() => {
             dispatch({ type: "daily" })
@@ -35,7 +34,7 @@ export default function CardTop() {
           Daily
         </button>
         <button
-          className="card_top-btn"
+          className={`card_top-btn ${state.weekly === true ? "active" : ""}`}
           type="button"
           onClick={() => {
             dispatch({ type: "weekly" })
@@ -44,7 +43,7 @@ export default function CardTop() {
           Weekly
         </button>
         <button
-          className="card_top-btn"
+          className={`card_top-btn ${state.monthly === true ? "active" : ""}`}
           type="button"
           onClick={() => {
             dispatch({ type: "monthly" })
