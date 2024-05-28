@@ -37,50 +37,46 @@ export default function CardTemplate({ data, image }: Props) {
         />
       </header>
       <div className="card_template-body">
-        <div>
-          <h1>{data.title}</h1>
-          <p>
+        <h1>{data.title}</h1>
+        <h2>
+          {state.daily
+            ? data.timeframes.daily.current
+            : state.weekly
+            ? data.timeframes.weekly.current
+            : state.monthly
+            ? data.timeframes.monthly.current
+            : "0"}
+          <span>hrs</span>
+        </h2>
+        <img
+          className="card_template-ellipsis"
+          src={Ellipsis}
+          alt={"Card options"}
+          width={50}
+          height={50}
+          loading="eager"
+        />
+        <p>
+          {state.daily
+            ? "Yesterday"
+            : state.weekly
+            ? "Last Week"
+            : state.monthly
+            ? "Last Month"
+            : ""}{" "}
+          -
+          <span>
+            {" "}
             {state.daily
-              ? data.timeframes.daily.current
+              ? data.timeframes.daily.previous
               : state.weekly
-              ? data.timeframes.weekly.current
+              ? data.timeframes.weekly.previous
               : state.monthly
-              ? data.timeframes.monthly.current
+              ? data.timeframes.monthly.previous
               : "0"}
-            <span>hrs</span>
-          </p>
-        </div>
-        <div>
-          <img
-            className="card_template-ellipsis"
-            src={Ellipsis}
-            alt={"Card options"}
-            width={50}
-            height={50}
-            loading="eager"
-          />
-          <p>
-            {state.daily
-              ? "Yesterday"
-              : state.weekly
-              ? "Last Week"
-              : state.monthly
-              ? "Last Month"
-              : ""}{" "}
-            -
-            <span>
-              {" "}
-              {state.daily
-                ? data.timeframes.daily.previous
-                : state.weekly
-                ? data.timeframes.weekly.previous
-                : state.monthly
-                ? data.timeframes.monthly.previous
-                : "0"}
-              hrs
-            </span>
-          </p>
-        </div>
+            hrs
+          </span>
+        </p>
       </div>
     </section>
   )

@@ -7,6 +7,7 @@
   font-weight: 300, 400, 500;
   font-style: normal;
   line-height: 1.5;
+  --footer-height: 1rem;
 
   --color: rgba(255, 255, 255, 0.87);
   color-scheme: light dark;
@@ -48,6 +49,12 @@ main {
   grid-template-rows: auto;
   gap: 1rem;
   padding: 1rem;
+
+  @media screen and (min-width: 768px) {
+    /* min-height: calc(100svh - var(--footer-height)); */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
 }
 
 /* ==== Cards ==== */
@@ -60,12 +67,22 @@ main {
   border-radius: 16px;
   background-color: var(--darkBlue);
 
+  @media screen and (min-width: 768px) {
+    grid-row: 1 / -1;
+    justify-content: flex-start;
+  }
+
   header {
     display: flex;
+    flex-direction: row;
     width: 100%;
     padding: 1rem;
     border-radius: 16px;
     background-color: var(--blue);
+
+    @media screen and (min-width: 768px) {
+      flex-direction: column;
+    }
 
     img {
       height: 55px;
@@ -74,11 +91,21 @@ main {
       border-radius: 50%;
       align-self: center;
       background-color: whitesmoke;
+
+      @media screen and (min-width: 768px) {
+        align-self: flex-start;
+      }
     }
 
     div {
       padding: 1rem;
+
+      @media screen and (min-width: 768px) {
+        padding: 1rem 0;
+      }
+
       p {
+        font-size: 1rem;
         font-weight: 300;
       }
       h1 {
@@ -89,16 +116,27 @@ main {
   }
   .card_body {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-content: center;
+    height: 100%;
     width: 100%;
     padding: 1rem;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: column;
+    }
 
     button[type="button"] {
       margin-inline: auto;
       background: none;
       border: none;
       color: var(--desaturatedBlue);
+
+      @media screen and (min-width: 768px) {
+        margin-inline: 0 auto;
+        margin-top: 1rem;
+      }
     }
     button:hover[type="button"] {
       cursor: pointer;
@@ -147,50 +185,73 @@ main {
   }
 
   .card_template-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-items: start;
+    align-items: center;
+
+    height: 101%;
     padding: 1rem;
     border-radius: 16px 16px 0 0;
     background-color: var(--darkBlue);
-    contain: content;
+    contain: content; /* @NOTE: Firefox Android, unsupported! */
 
-    div:first-child {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-start;
-      h1 {
-        font-size: 1rem;
-        font-weight: 500;
-      }
-      p {
-        font-size: 1.4rem;
-        font-weight: 300;
-      }
+    @media screen and (min-width: 768px) {
+      grid-template-rows: repeat(3, 1fr);
     }
 
-    div:last-child {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-end;
-      text-align: right;
-      img {
-        height: 0.25rem;
-        width: 1rem;
+    h1 {
+      font-size: 1rem;
+      font-weight: 500;
+      align-self: end;
+      grid-area: 1/1;
+
+      @media screen and (min-width: 768px) {
+        align-self: start;
       }
-      p {
-        font-size: 1rem;
-        font-weight: 300;
-        color: var(--paleBlue);
+    }
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 300;
+      grid-area: 2/1;
+
+      @media screen and (min-width: 768px) {
+        grid-area: 1/2 2/2;
+      }
+    }
+    img {
+      --ellipsis-h: 0.5rem;
+      height: var(--ellipsis-h);
+      width: calc(var(--ellipsis-h) x 4);
+      justify-self: end;
+      align-self: end;
+      grid-area: 1/2;
+
+      @media screen and (min-width: 768px) {
+        align-self: start;
+        margin-top: 0.5rem;
+      }
+    }
+    p {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--paleBlue);
+      justify-self: end;
+      grid-area: 2/2;
+
+      @media screen and (min-width: 768px) {
+        justify-self: start;
+        grid-area: 3/1/-1/-1;
       }
     }
   }
 }
 
 /* ==== Footer ==== */
+footer {
+  height: var(--footer-height);
+}
 .attribution {
   font-size: 11px;
   text-align: center;
