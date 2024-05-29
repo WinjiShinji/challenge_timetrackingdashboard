@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import Ellipsis from "../assets/images/icon-ellipsis.svg"
 import AppContext from "../context/AppContext"
+import { imageList } from "../assets/images/imageList"
 
 type Props = {
   data: {
@@ -50,7 +50,7 @@ export default function CardTemplate({ data, image }: Props) {
         </h2>
         <img
           className="card_template-ellipsis"
-          src={Ellipsis}
+          src={imageList.ellipsis}
           alt={"Card options"}
           width={50}
           height={50}

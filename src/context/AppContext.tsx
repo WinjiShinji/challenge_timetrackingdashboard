@@ -57,7 +57,7 @@ const timeReducer = (state: State, action: ReducerAction) => {
 }
 
 // ==== Context ==== //
-// @FIX: {} as Context!
+// @Note: {} as Context!
 const AppContext = createContext<Context>({} as Context)
 export const AppProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(timeReducer, initState)

@@ -5,6 +5,7 @@ import study from "./icon-study.svg"
 import exercise from "./icon-exercise.svg"
 import social from "./icon-social.svg"
 import selfcare from "./icon-self-care.svg"
+import ellipsis from "./icon-ellipsis.svg"
 
 export const imageList = {
   profile: profile,
@@ -14,4 +15,5 @@ export const imageList = {
   exercise: exercise,
   social: social,
   selfcare: selfcare,
+  ellipsis: ellipsis,
 }
