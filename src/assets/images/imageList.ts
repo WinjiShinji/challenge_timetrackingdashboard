@@ -7,7 +7,11 @@ import social from "./icon-social.svg"
 import selfcare from "./icon-self-care.svg"
 import ellipsis from "./icon-ellipsis.svg"
 
-export const imageList = {
+type ImgList = {
+  [index: string]: string
+}
+
+export const imageList: ImgList = {
   profile: profile,
   work: work,
   play: play,

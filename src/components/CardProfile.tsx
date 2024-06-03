@@ -1,17 +1,23 @@
 import { useContext } from "react"
-import profile_img from "../assets/images/image-jeremy.png"
 import AppContext from "../context/AppContext"
+import { useNavigate } from "react-router-dom"
+import { imageList } from "../assets/images/imageList"
 
 export default function CardTop() {
   const { state, dispatch } = useContext(AppContext)
+  const nav = useNavigate()
+
+  const handleNavigate = () => {
+    nav("/profile")
+  }
 
   return (
     <section className="card_top">
       {/* Card Header */}
-      <header>
+      <header onClick={() => handleNavigate()}>
         <img
           className="card_top-img"
-          src={profile_img}
+          src={imageList.profile}
           alt="Your profile picture"
           width={200}
           height={200}
