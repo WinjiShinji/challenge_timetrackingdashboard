@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import AppContext from "../context/AppContext"
 import { imageList } from "../assets/images/imageList"
 import { Link } from "react-router-dom"
@@ -24,7 +24,21 @@ type Props = {
   image: string
 }
 export default function CardTemplate({ data, image }: Props) {
+  const [menuIsActive, setMenuIsActive] = useState(false)
+
   const { state } = useContext(AppContext)
+
+  const handleMenuEvent = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>
+  ) => {
+    e.preventDefault()
+    if (menuIsActive === true) {
+      return setMenuIsActive(false)
+    } else {
+      return setMenuIsActive(true)
+    }
+  }
+
   return (
     <section className={`card_template ${data.title}`}>
       {/* Card Top */}
@@ -41,7 +55,28 @@ export default function CardTemplate({ data, image }: Props) {
 
       {/* Card Middle */}
       <div className="card_template-body">
-        <Link to={`/activity/${data.title}`}>
+        <div className={`card_template-menu ${menuIsActive ? "active" : ""}`}>
+          <button onClick={(e) => handleMenuEvent(e)}>
+            <img
+              className={`card_template-ellipsis ${
+                menuIsActive ? "active" : ""
+              }`}
+              src={imageList.ellipsis}
+              alt={"Card options"}
+              width={50}
+              height={50}
+              loading="eager"
+            />
+          </button>
+          <ul>
+            <li>Menu 1</li>
+            <li>Menu 2</li>
+            <li>Menu 3</li>
+            <li>etc...</li>
+          </ul>
+        </div>
+
+        <Link className="card_template-card" to={`/activity/${data.title}`}>
           <h1>{data.title}</h1>
           <h2>
             {state.daily
@@ -53,14 +88,18 @@ export default function CardTemplate({ data, image }: Props) {
               : "0"}
             <span>hrs</span>
           </h2>
-          <img
-            className="card_template-ellipsis"
-            src={imageList.ellipsis}
-            alt={"Card options"}
-            width={50}
-            height={50}
-            loading="eager"
-          />
+          <button onClick={(e) => handleMenuEvent(e)}>
+            <img
+              className={`card_template-ellipsis ${
+                menuIsActive ? "active" : ""
+              }`}
+              src={imageList.ellipsis}
+              alt={"Card options"}
+              width={50}
+              height={50}
+              loading="eager"
+            />
+          </button>
           <p>
             {state.daily
               ? "Yesterday"

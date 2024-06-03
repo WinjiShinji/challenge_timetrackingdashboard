@@ -197,7 +197,8 @@ main {
   }
 
   .card_template-body {
-    a {
+    position: relative;
+    .card_template-card {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
@@ -236,23 +237,31 @@ main {
           grid-area: 1/2 2/2;
         }
       }
-      img {
-        --ellipsis-h: 0.5rem;
-        height: var(--ellipsis-h);
-        width: calc(var(--ellipsis-h) x 4);
-        justify-self: end;
-        align-self: flex-start;
-        grid-area: 1/2;
-        filter: opacity(50%);
+      button {
+        border: none;
+        background: none;
 
-        @media screen and (min-width: 768px) {
-          align-self: start;
-          margin-top: 0.5rem;
+        justify-self: end;
+        grid-area: 1/2;
+        align-self: flex-start;
+
+        img {
+          --ellipsis-h: 0.5rem;
+          height: var(--ellipsis-h);
+          width: calc(var(--ellipsis-h) x 4);
+          filter: opacity(50%);
+
+          @media screen and (min-width: 768px) {
+            align-self: start;
+            margin-top: 0.5rem;
+          }
         }
       }
-      img:hover {
-        cursor: pointer;
-        filter: opacity(100%);
+      button {
+        img:hover {
+          cursor: pointer;
+          filter: opacity(100%);
+        }
       }
 
       p {
@@ -272,6 +281,65 @@ main {
     a:hover {
       cursor: pointer;
       filter: brightness(1.4);
+    }
+
+    .card_template-menu {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      padding: 1rem;
+      border-radius: 1rem;
+
+      display: none;
+
+      background-color: var(--darkBlue);
+
+      button {
+        border: none;
+        background: none;
+        position: absolute;
+        right: 1rem;
+
+        justify-self: end;
+        grid-area: 1/2;
+        align-self: flex-start;
+
+        img {
+          --ellipsis-h: 0.5rem;
+          height: var(--ellipsis-h);
+          width: calc(var(--ellipsis-h) x 4);
+          filter: opacity(50%);
+
+          @media screen and (min-width: 768px) {
+            align-self: start;
+            margin-top: 0.5rem;
+          }
+        }
+      }
+      button {
+        img:hover {
+          cursor: pointer;
+          filter: opacity(100%);
+        }
+      }
+
+      ul {
+        list-style: none;
+        font-weight: 300;
+        color: var(--desaturatedBlue);
+        overflow: hidden;
+
+        li {
+          width: fit-content;
+        }
+        li:hover {
+          cursor: pointer;
+          color: var(--color);
+        }
+      }
+    }
+    .card_template-menu.active {
+      display: block;
     }
   }
 }
